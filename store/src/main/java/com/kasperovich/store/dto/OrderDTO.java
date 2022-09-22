@@ -22,7 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 public class OrderDTO {
-    Integer id;
+    Long id;
 
     Integer userId;
 

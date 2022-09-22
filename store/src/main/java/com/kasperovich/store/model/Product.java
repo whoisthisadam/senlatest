@@ -26,7 +26,7 @@ import static lombok.AccessLevel.PUBLIC;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    Long id;
 
     @Column(name="name")
     String name;
@@ -41,4 +41,7 @@ public class Product {
     @Column(name="created_at")
     @JsonFormat(shape=JsonFormat.Shape.OBJECT, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="Europe/Minsk")
     Timestamp createdAt;
+
+    @Column(name="is_deleted", columnDefinition = "bool default false", nullable = false)
+    Boolean isDeleted;
 }

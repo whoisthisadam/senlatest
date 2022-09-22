@@ -22,7 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 public class ProductDTO {
-    Integer id;
+    Long id;
 
     String name;
 
@@ -31,4 +31,6 @@ public class ProductDTO {
     ProductStatus productStatus;
 
     Timestamp createdAt;
+
+    Boolean isDeleted;
 }

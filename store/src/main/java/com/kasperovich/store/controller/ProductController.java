@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,11 +50,23 @@ public class ProductController {
         return ResponseEntity.ok(productService.findAll());
     }
 
-    @PostMapping()
+    @PostMapping("/products")
     public ResponseEntity<Map<String, Product>> createProduct(@RequestBody ProductDTO productDTO){
-        Product product=new Product(productDTO.getId(),productDTO.getName(),productDTO.getPrice(),productDTO.getProductStatus(),productDTO.getCreatedAt());
+        Product product=new Product(productDTO.getId(),productDTO.getName(),productDTO.getPrice(),productDTO.getProductStatus(),productDTO.getCreatedAt(), productDTO.getIsDeleted());
         productService.createProduct(product);
 //        return ResponseEntity.ok("Product:"+product.getName());
         return new ResponseEntity<>(Collections.singletonMap("New product:", product), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/products")
+    public ResponseEntity<String> updateProduct(@RequestBody ProductDTO productDTO){
+        productService.updateProduct(productDTO);
+        return new ResponseEntity<>("Updated product with id="+productDTO.getId(), HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable(value = "id") Long id){
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("Deleted product with id:"+id);
     }
 }
