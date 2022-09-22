@@ -35,8 +35,8 @@ public class OrderController {
     }
     )
 
-    public ResponseEntity<List<OrderDTO>> findAllProductsWithParam (@RequestParam(value = "from:", defaultValue = "10-04-19 12:00:17", required = false)Timestamp from
-    , @RequestParam(value = "to:", defaultValue = "10-04-22 12:00:17", required = false)Timestamp to) {
+    public ResponseEntity<List<OrderDTO>> findAllProductsWithParam (@RequestParam(value = "from:", defaultValue = "2019-10-04 12:00:17", required = false)Timestamp from
+    , @RequestParam(value = "to:", defaultValue = "2022-10-04 12:00:17", required = false)Timestamp to) {
         List<OrderDTO> list =
                 orderService.findSortedAllOrdersWithParam(from, to).stream().map(x->{
                     return new OrderDTO(x.getId(),x.getUserId(),x.getStatus(),x.getCreatedAt());}).collect(Collectors.toList());

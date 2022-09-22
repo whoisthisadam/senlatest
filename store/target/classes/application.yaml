@@ -6,19 +6,15 @@ spring:
         pathmatch:
             matching-strategy: ant_path_matcher
     datasource:
-        url: jdbc:h2:mem:mydb
+        url: jdbc:h2:file:./data/fileDb
         username: sa
         password: password
         driverClassName: org.h2.Driver
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         hibernate:
-            ddl-auto: create
-        generate-ddl: true
+            ddl-auto: update
         defer-datasource-initialization: true
 
-    sql:
-        init:
-            mode: always
 
 
