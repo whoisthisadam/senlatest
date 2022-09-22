@@ -35,13 +35,12 @@ public class Product {
     Integer price;
 
     @Column(name="product_status")
-    @GeneratedValue
     ProductStatus productStatus;
 
     @Column(name="created_at")
     @JsonFormat(shape=JsonFormat.Shape.OBJECT, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="Europe/Minsk")
     Timestamp createdAt;
 
-    @Column(name="is_deleted", columnDefinition = "bool default false", nullable = false)
+    @Column(name="is_deleted", columnDefinition = "bool default false")
     Boolean isDeleted;
 }

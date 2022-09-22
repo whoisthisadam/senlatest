@@ -52,7 +52,7 @@ public class ProductController {
 
     @PostMapping("/products")
     public ResponseEntity<Map<String, Product>> createProduct(@RequestBody ProductDTO productDTO){
-        Product product=new Product(productDTO.getId(),productDTO.getName(),productDTO.getPrice(),productDTO.getProductStatus(),productDTO.getCreatedAt(), productDTO.getIsDeleted());
+        Product product=new Product(productDTO.getId(),productDTO.getName(),productDTO.getPrice(),productDTO.getProductStatus(),productDTO.getCreatedAt(), false);
         productService.createProduct(product);
 //        return ResponseEntity.ok("Product:"+product.getName());
         return new ResponseEntity<>(Collections.singletonMap("New product:", product), HttpStatus.CREATED);

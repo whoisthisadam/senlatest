@@ -2,6 +2,7 @@ package com.kasperovich.store.service.product;
 
 import com.kasperovich.store.dto.ProductDTO;
 import com.kasperovich.store.enums.ProductStatus;
+import com.kasperovich.store.excepion.NotPossibleToDeleteProductException;
 import com.kasperovich.store.model.Product;
 import com.kasperovich.store.repository.OrderRepository;
 import com.kasperovich.store.repository.ProductRepository;
@@ -50,10 +51,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(Long id) {
+    public void deleteProduct(Long id) throws NotPossibleToDeleteProductException {
         List<Product> list=productRepository.findAll();
         list.forEach(x->{if(Objects.equals(x.getId(), id)){
             Product product=new Product(x.getId(),x.getName(),x.getPrice(),x.getProductStatus(),x.getCreatedAt(),true);
+            if(product.getProductStatus()!=ProductStatus.OUT_OF_STOCK) throw new NotPossibleToDeleteProductException();
             productRepository.save(product);
         }});
     }
