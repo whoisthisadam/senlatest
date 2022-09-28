@@ -25,8 +25,6 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 public class ProductDTO {
 
-    Long id;
-
     String name;
 
     Integer price;

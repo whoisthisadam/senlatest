@@ -8,6 +8,7 @@ import com.kasperovich.store.model.Product;
 import com.kasperovich.store.repository.OrderRepository;
 import com.kasperovich.store.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
