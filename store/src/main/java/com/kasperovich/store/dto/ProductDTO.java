@@ -3,6 +3,7 @@ package com.kasperovich.store.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.kasperovich.store.enums.ProductStatus;
+import com.kasperovich.store.model.Order;
 import com.kasperovich.store.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -22,6 +24,7 @@ import static lombok.AccessLevel.PRIVATE;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 public class ProductDTO {
+
     Long id;
 
     String name;
@@ -30,7 +33,5 @@ public class ProductDTO {
 
     ProductStatus productStatus;
 
-    Timestamp createdAt;
-
-    Boolean isDeleted;
+//    Boolean isDeleted;
 }

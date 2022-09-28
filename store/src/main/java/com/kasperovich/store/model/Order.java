@@ -11,6 +11,7 @@ import javax.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Comparator;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PUBLIC;
@@ -24,7 +25,7 @@ import static lombok.AccessLevel.PUBLIC;
 @Table(name="orders")
 public class Order implements Comparator<Order>, Comparable<Order>{
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
 
     @Column(name="user_id", nullable = false)
@@ -45,4 +46,7 @@ public class Order implements Comparator<Order>, Comparable<Order>{
     public int compareTo(Order o) {
         return this.userId-o.userId;
     }
+
+    @ManyToMany
+    Set<Product>products;
 }

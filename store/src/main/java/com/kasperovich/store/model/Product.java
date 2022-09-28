@@ -7,10 +7,12 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.annotation.processing.Generated;
+import javax.management.ConstructorParameters;
 import javax.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Random;
+import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PUBLIC;
@@ -43,4 +45,7 @@ public class Product {
 
     @Column(name="is_deleted", columnDefinition = "bool default false")
     Boolean isDeleted;
+
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Set<Order>orderSet;
 }

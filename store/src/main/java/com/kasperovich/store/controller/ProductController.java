@@ -2,7 +2,10 @@ package com.kasperovich.store.controller;
 import java.sql.Timestamp;
 import com.kasperovich.store.dto.OrderDTO;
 import com.kasperovich.store.dto.ProductDTO;
+import com.kasperovich.store.enums.ProductStatus;
+import com.kasperovich.store.model.Order;
 import com.kasperovich.store.model.Product;
+import com.kasperovich.store.repository.OrderRepository;
 import com.kasperovich.store.service.order.OrderService;
 import com.kasperovich.store.service.product.ProductService;
 import io.swagger.annotations.Api;
@@ -21,10 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.annotation.Repeatable;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,6 +36,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private OrderRepository orderRepository;
+
     @Operation(summary = "product")
     @GetMapping("/products")
     @PostMapping("/products")
@@ -46,22 +49,26 @@ public class ProductController {
     }
     )
 
-    public ResponseEntity<List<ProductDTO>> findAllProd(){
+    public ResponseEntity<List<Product>> findAllProd(){
         return ResponseEntity.ok(productService.findAll());
     }
 
     @PostMapping("/products")
     public ResponseEntity<Map<String, Product>> createProduct(@RequestBody ProductDTO productDTO){
-        Product product=new Product(productDTO.getId(),productDTO.getName(),productDTO.getPrice(),productDTO.getProductStatus(),productDTO.getCreatedAt(), false);
+        Product product=new Product();
+        product.setName(productDTO.getName());
+        product.setPrice(productDTO.getPrice());
+        product.setCreatedAt(new Timestamp(new Date().getTime()));
+        product.setProductStatus(ProductStatus.values()[new Random().nextInt(3)]);
+        product.setIsDeleted(false);
         productService.createProduct(product);
-//        return ResponseEntity.ok("Product:"+product.getName());
         return new ResponseEntity<>(Collections.singletonMap("New product:", product), HttpStatus.CREATED);
     }
 
     @PutMapping("/products")
-    public ResponseEntity<String> updateProduct(@RequestBody ProductDTO productDTO){
-        productService.updateProduct(productDTO);
-        return new ResponseEntity<>("Updated product with id="+productDTO.getId(), HttpStatus.ACCEPTED);
+    public ResponseEntity<String> updateProduct(@RequestParam Long id, @RequestBody ProductDTO productDTO){
+        productService.updateProduct(id, productDTO);
+        return new ResponseEntity<>("Updated product with id="+id, HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/products/{id}")

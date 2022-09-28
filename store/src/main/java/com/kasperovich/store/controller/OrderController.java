@@ -2,6 +2,7 @@ package com.kasperovich.store.controller;
 
 
 import com.kasperovich.store.dto.OrderDTO;
+import com.kasperovich.store.model.Order;
 import com.kasperovich.store.service.order.OrderService;
 import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,11 +36,9 @@ public class OrderController {
     }
     )
 
-    public ResponseEntity<List<OrderDTO>> findAllProductsWithParam (@RequestParam(value = "from:", defaultValue = "2019-10-04 12:00:17", required = false)Timestamp from
+    public ResponseEntity<List<Order>> findAllProductsWithParam (@RequestParam(value = "from:", defaultValue = "2019-10-04 12:00:17", required = false)Timestamp from
     , @RequestParam(value = "to:", defaultValue = "2022-10-04 12:00:17", required = false)Timestamp to) {
-        List<OrderDTO> list =
-                orderService.findSortedAllOrdersWithParam(from, to).stream().map(x->{
-                    return new OrderDTO(x.getId(),x.getUserId(),x.getStatus(),x.getCreatedAt());}).collect(Collectors.toList());
+        List<Order> list = orderService.findSortedAllOrdersWithParam(from, to);
         return ResponseEntity.ok(list);
     }
 }

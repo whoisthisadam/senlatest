@@ -8,9 +8,9 @@ import java.util.List;
 public interface ProductService {
     Product createProduct(Product product);
 
-    List<ProductDTO> findAll();
+    List<Product> findAll();
 
-    Product updateProduct(ProductDTO productDto);
+    Product updateProduct(Long id, ProductDTO productDto);
 
     void deleteProduct(Long id);
 }
