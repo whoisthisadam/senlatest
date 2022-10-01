@@ -11,7 +11,9 @@ com\kasperovich\store\service\product\ProductServiceImpl.class
 com\kasperovich\store\enums\ProductStatus.class
 com\kasperovich\store\config\SecurityConfig.class
 com\kasperovich\store\dto\OrderDTO.class
+com\kasperovich\store\excepion\NotPossibleToCreateOrderException.class
 com\kasperovich\store\service\order\OrderService.class
+com\kasperovich\store\controller\exceptionHandler\OrderExceptionHandler.class
 com\kasperovich\store\StoreApplication.class
 com\kasperovich\store\controller\exceptionHandler\ProductExceptionHandler.class
 com\kasperovich\store\controller\OrderController.class

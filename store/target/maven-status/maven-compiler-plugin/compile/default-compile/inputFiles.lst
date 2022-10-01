@@ -5,6 +5,7 @@ C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\service\order\OrderService.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\service\product\ProductServiceImpl.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\OrderController.java
+C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\excepion\NotPossibleToCreateOrderException.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\model\Product.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\config\SecurityConfig.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\StoreApplication.java
@@ -14,6 +15,7 @@ C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\dto\Produc
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\ProductController.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\repository\OrderRepository.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\uitil\UUIDGenerator.java
+C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\exceptionHandler\OrderExceptionHandler.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\enums\ProductStatus.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\model\Order.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\dto\OrderDTO.java

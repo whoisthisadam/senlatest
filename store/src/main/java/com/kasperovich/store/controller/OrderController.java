@@ -2,12 +2,14 @@ package com.kasperovich.store.controller;
 
 
 import com.kasperovich.store.dto.OrderDTO;
+import com.kasperovich.store.excepion.NotPossibleToCreateOrderException;
 import com.kasperovich.store.model.Order;
 import com.kasperovich.store.service.order.OrderService;
 import io.swagger.annotations.*;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -40,5 +42,11 @@ public class OrderController {
     , @RequestParam(value = "to:", defaultValue = "2022-10-04 12:00:17", required = false)Timestamp to) {
         List<Order> list = orderService.findSortedAllOrdersWithParam(from, to);
         return ResponseEntity.ok(list);
+    }
+
+    @PostMapping
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDTO order) throws NotPossibleToCreateOrderException {
+        if(order.getUserId()==null)throw new NotPossibleToCreateOrderException();
+        return new ResponseEntity<>(orderService.createOrder(order), HttpStatus.CREATED);
     }
 }

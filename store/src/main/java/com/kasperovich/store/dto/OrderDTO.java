@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -24,11 +25,14 @@ import static lombok.AccessLevel.PRIVATE;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 public class OrderDTO {
-    Long id;
+
+//    Long id;
 
     Integer userId;
 
     String status;
+
+    Set<Long>productSet=new HashSet<>();
 
 //    Timestamp createdAt;
 }

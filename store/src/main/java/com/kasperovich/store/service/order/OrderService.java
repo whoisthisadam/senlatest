@@ -9,4 +9,6 @@ import java.util.List;
 public interface OrderService {
 
     List<Order> findSortedAllOrdersWithParam(Timestamp from, Timestamp to);
+
+    Order createOrder(OrderDTO orderDTO);
 }

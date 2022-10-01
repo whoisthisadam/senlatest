@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
         List<Product> list=new ArrayList<>();
         productRepository.findAll().forEach(x->{
             if(x.getIsDeleted().equals(false)){
-                list.add(new Product(x.getId(), x.getName(), x.getPrice(), x.getProductStatus(), x.getCreatedAt(), x.getIsDeleted(),x.getOrderSet()));
+                list.add(new Product(x.getId(), x.getName(), x.getPrice(), x.getProductStatus(), x.getCreatedAt(), x.getIsDeleted(),x.getOrders()));
             }
         });
         return list;
@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long id) throws NotPossibleToDeleteProductException {
         List<Product> list=productRepository.findAll();
         list.forEach(x->{if(Objects.equals(x.getId(), id)){
-            Product product=new Product(x.getId(),x.getName(),x.getPrice(),x.getProductStatus(),x.getCreatedAt(),true,x.getOrderSet());
+            Product product=new Product(x.getId(),x.getName(),x.getPrice(),x.getProductStatus(),x.getCreatedAt(),true, x.getOrders());
             if(product.getProductStatus()!=ProductStatus.OUT_OF_STOCK) throw new NotPossibleToDeleteProductException();
             productRepository.save(product);
         }});

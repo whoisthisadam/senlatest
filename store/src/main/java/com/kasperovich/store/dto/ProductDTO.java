@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -25,11 +26,15 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 public class ProductDTO {
 
+//    Long id;
+
     String name;
 
     Integer price;
 
     ProductStatus productStatus;
+
+    Set<Long>orderSet=new HashSet<>();
 
 //    Boolean isDeleted;
 }
