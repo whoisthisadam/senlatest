@@ -4,6 +4,8 @@ C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\excepion\N
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\exceptionHandler\ProductExceptionHandler.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\service\order\OrderService.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\service\product\ProductServiceImpl.java
+C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\dto\product\ProductGETDto.java
+C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\dto\order\OrderPOSTDto.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\OrderController.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\excepion\NotPossibleToCreateOrderException.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\model\Product.java
@@ -11,12 +13,11 @@ C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\config\Sec
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\StoreApplication.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\exceptionHandler\ErrorContainer.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\repository\ProductRepository.java
-C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\dto\ProductDTO.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\ProductController.java
+C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\dto\product\ProductPOSTDto.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\repository\OrderRepository.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\uitil\UUIDGenerator.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\controller\exceptionHandler\OrderExceptionHandler.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\enums\ProductStatus.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\model\Order.java
-C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\dto\OrderDTO.java
 C:\Users\Адам\senlatest\store\src\main\java\com\kasperovich\store\service\order\OrderServiceImpl.java

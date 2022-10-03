@@ -1,2 +1,2 @@
 # senlatest
-Open IT Hakaton Taks by Senla 
+Open IT Hakaton Task by Senla 
