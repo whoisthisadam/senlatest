@@ -1,19 +1,17 @@
 package com.kasperovich.store.controller;
 import java.sql.Timestamp;
-import com.kasperovich.store.dto.OrderDTO;
-import com.kasperovich.store.dto.ProductDTO;
+
+import com.kasperovich.store.dto.ProductPOSTDto;
+import com.kasperovich.store.dto.product.ProductGETDto;
 import com.kasperovich.store.enums.ProductStatus;
-import com.kasperovich.store.model.Order;
 import com.kasperovich.store.model.Product;
 import com.kasperovich.store.repository.OrderRepository;
-import com.kasperovich.store.service.order.OrderService;
 import com.kasperovich.store.service.product.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,11 +19,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import java.lang.annotation.Repeatable;
 
-import java.sql.Timestamp;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @Api(tags = {"Product"})
@@ -49,12 +44,12 @@ public class ProductController {
     }
     )
 
-    public ResponseEntity<List<Product>> findAllProd(){
+    public ResponseEntity<List<ProductGETDto>> findAllProd(){
         return ResponseEntity.ok(productService.findAll());
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Map<String, Product>> createProduct(@RequestBody ProductDTO productDTO){
+    public ResponseEntity<Map<String, Product>> createProduct(@RequestBody ProductPOSTDto productDTO){
         Product product=new Product();
         product.setName(productDTO.getName());
         product.setPrice(productDTO.getPrice());
@@ -66,7 +61,7 @@ public class ProductController {
     }
 
     @PutMapping("/products")
-    public ResponseEntity<String> updateProduct(@RequestParam Long id, @RequestBody ProductDTO productDTO){
+    public ResponseEntity<String> updateProduct(@RequestParam Long id, @RequestBody ProductPOSTDto productDTO){
         productService.updateProduct(id, productDTO);
         return new ResponseEntity<>("Updated product with id="+id, HttpStatus.ACCEPTED);
     }

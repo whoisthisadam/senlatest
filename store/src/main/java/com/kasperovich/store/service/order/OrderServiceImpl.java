@@ -1,6 +1,6 @@
 package com.kasperovich.store.service.order;
 
-import com.kasperovich.store.dto.OrderDTO;
+import com.kasperovich.store.dto.order.OrderPOSTDto;
 import com.kasperovich.store.enums.ProductStatus;
 import com.kasperovich.store.excepion.NotPossibleToCreateOrderException;
 import com.kasperovich.store.model.Order;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,14 +35,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order createOrder(OrderDTO orderDTO) throws NotPossibleToCreateOrderException {
+    public Order createOrder(OrderPOSTDto orderPOSTDto) throws NotPossibleToCreateOrderException {
         Order order=new Order();
-        order.setUserId(Optional.ofNullable(orderDTO.getUserId()).orElseThrow(NotPossibleToCreateOrderException::new));
-        order.setStatus(orderDTO.getStatus());
+        order.setUserId(Optional.ofNullable(orderPOSTDto.getUserId()).orElseThrow(NotPossibleToCreateOrderException::new));
+        order.setStatus(orderPOSTDto.getStatus());
         order.setCreatedAt(new Timestamp(new Date().getTime()));
 
         Set<Product>products=productRepository
-                                .findAllById(orderDTO.getProductSet())
+                                .findAllById(orderPOSTDto.getProductSet())
                                 .stream()
                                 .filter(x-> !(x.getProductStatus().equals(ProductStatus.OUT_OF_STOCK))).collect(Collectors.toSet());
 

@@ -1,7 +1,7 @@
 package com.kasperovich.store.controller;
 
 
-import com.kasperovich.store.dto.OrderDTO;
+import com.kasperovich.store.dto.order.OrderPOSTDto;
 import com.kasperovich.store.excepion.NotPossibleToCreateOrderException;
 import com.kasperovich.store.model.Order;
 import com.kasperovich.store.service.order.OrderService;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @Api(tags = {"Order"})
@@ -45,7 +44,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody OrderDTO order) throws NotPossibleToCreateOrderException {
+    public ResponseEntity<Order> createOrder(@RequestBody OrderPOSTDto order) throws NotPossibleToCreateOrderException {
         if(order.getUserId()==null)throw new NotPossibleToCreateOrderException();
         return new ResponseEntity<>(orderService.createOrder(order), HttpStatus.CREATED);
     }

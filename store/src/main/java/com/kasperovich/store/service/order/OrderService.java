@@ -1,6 +1,6 @@
 package com.kasperovich.store.service.order;
 
-import com.kasperovich.store.dto.OrderDTO;
+import com.kasperovich.store.dto.order.OrderPOSTDto;
 import com.kasperovich.store.excepion.NotPossibleToCreateOrderException;
 import com.kasperovich.store.model.Order;
 
@@ -11,5 +11,5 @@ public interface OrderService {
 
     List<Order> findSortedAllOrdersWithParam(Timestamp from, Timestamp to);
 
-    Order createOrder(OrderDTO orderDTO) throws NotPossibleToCreateOrderException;
+    Order createOrder(OrderPOSTDto orderPOSTDto) throws NotPossibleToCreateOrderException;
 }

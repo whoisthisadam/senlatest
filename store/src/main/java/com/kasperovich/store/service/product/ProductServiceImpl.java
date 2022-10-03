@@ -1,18 +1,16 @@
 package com.kasperovich.store.service.product;
 
-import com.kasperovich.store.dto.ProductDTO;
+import com.kasperovich.store.dto.ProductPOSTDto;
+import com.kasperovich.store.dto.product.ProductGETDto;
 import com.kasperovich.store.enums.ProductStatus;
 import com.kasperovich.store.excepion.NotPossibleToDeleteProductException;
-import com.kasperovich.store.model.Order;
 import com.kasperovich.store.model.Product;
-import com.kasperovich.store.repository.OrderRepository;
 import com.kasperovich.store.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,18 +24,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAll() {
-        List<Product> list=new ArrayList<>();
-        productRepository.findAll().forEach(x->{
+    public List<ProductGETDto> findAll() {
+        List<ProductGETDto> list=new ArrayList<>();
+        productRepository.findAll(Sort.by("orders")).forEach(x->{
             if(x.getIsDeleted().equals(false)){
-                list.add(new Product(x.getId(), x.getName(), x.getPrice(), x.getProductStatus(), x.getCreatedAt(), x.getIsDeleted(),x.getOrders()));
+                list.add(new ProductGETDto(x.getName(),x.getPrice(), (long) x.getOrders().size()));
             }
         });
         return list;
     }
 
     @Override
-    public Product updateProduct(Long id, ProductDTO productDto) {
+    public Product updateProduct(Long id, ProductPOSTDto productDto) {
         Product product=new Product();
         product.setId(id);
         product.setName(Optional.ofNullable(productDto.getName()).orElse(productRepository.findById(id).get().getName()));
