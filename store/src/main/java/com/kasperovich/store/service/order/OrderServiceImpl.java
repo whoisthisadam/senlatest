@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,24 +36,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order createOrder(OrderDTO orderDTO){
+    public Order createOrder(OrderDTO orderDTO) throws NotPossibleToCreateOrderException {
         Order order=new Order();
-        order.setUserId(orderDTO.getUserId());
+        order.setUserId(Optional.ofNullable(orderDTO.getUserId()).orElseThrow(NotPossibleToCreateOrderException::new));
         order.setStatus(orderDTO.getStatus());
         order.setCreatedAt(new Timestamp(new Date().getTime()));
 
-        Set<Product>products= new HashSet<>(productRepository.findAllById(orderDTO.getProductSet()));
-//        products.forEach(x->{
-//            if(x.getProductStatus().equals(ProductStatus.OUT_OF_STOCK)) throw new NotPossibleToCreateOrderException();
-//        });
+        Set<Product>products=productRepository
+                                .findAllById(orderDTO.getProductSet())
+                                .stream()
+                                .filter(x-> !(x.getProductStatus().equals(ProductStatus.OUT_OF_STOCK))).collect(Collectors.toSet());
 
-        productRepository.findAllById(orderDTO.getProductSet()).forEach(x->{
-            if(x.getProductStatus().equals(ProductStatus.OUT_OF_STOCK)) try {
-                throw new NotPossibleToCreateOrderException();
-            } catch (NotPossibleToCreateOrderException e) {
-                throw new RuntimeException(e);
-            }
-        });
+
+        if(products.isEmpty())throw new NotPossibleToCreateOrderException();
         order.setProducts(products);
         return orderRepository.save(order);
     }

@@ -7,16 +7,16 @@ spring:
             matching-strategy: ant_path_matcher
     h2:
         console:
-            path: /h2
+            path: /h2-console/
     datasource:
-        url: jdbc:h2:file:./data/fileDb
+        url: jdbc:h2:file:./data/fileDbStore
         username: sa
         password: password
         driverClassName: org.h2.Driver
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
         defer-datasource-initialization: true
 
 

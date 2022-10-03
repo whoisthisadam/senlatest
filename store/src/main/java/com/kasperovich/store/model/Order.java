@@ -23,7 +23,7 @@ import static lombok.AccessLevel.PUBLIC;
 @Table(name="orders")
 public class Order implements Comparator<Order>, Comparable<Order>{
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Long id;
 
     @Column(name="user_id", nullable = false)
