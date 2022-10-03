@@ -36,5 +36,6 @@ public class ProductDTO {
 
     Set<Long>orderSet=new HashSet<>();
 
-//    Boolean isDeleted;
+
+//    Boolean isDeleted;0
 }

@@ -5,8 +5,11 @@ spring:
     mvc:
         pathmatch:
             matching-strategy: ant_path_matcher
+    h2:
+        console:
+            path: /h2
     datasource:
-        url: jdbc:h2:mem:mydb
+        url: jdbc:h2:file:./data/fileDb
         username: sa
         password: password
         driverClassName: org.h2.Driver
